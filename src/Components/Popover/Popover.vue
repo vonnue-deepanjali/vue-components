@@ -20,14 +20,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-interface Props {
-  position?: 'top' | 'right' | 'bottom' | 'left'
-  heading?: string
-  icon?: string | object
-  contentItems?: string[]
-}
+import type { PopoverProps } from '@/type/Popover'
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<PopoverProps>(), {
   position: 'top',
   heading: 'Popover me',
   contentItems: () => ['Option 1', 'Option 2'],
