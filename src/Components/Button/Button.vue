@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import type { buttonProps } from '@/type/Popover'
+import type { buttonProps } from '@/type/Button'
 
 const props = withDefaults(defineProps<buttonProps>(), {
   text: 'Click Me',
@@ -17,8 +17,6 @@ const props = withDefaults(defineProps<buttonProps>(), {
   textColor: '#000000',
   padding: '10px 20px',
 })
-
-const { text, backgroundColor, textColor, padding } = props
 
 const emit = defineEmits<{
   (e: 'click', event: MouseEvent): void
