@@ -1,14 +1,14 @@
 <template>
-  <div class="popover-wrapper" @mouseenter="popoverOpen" @mouseleave="popoverClose">
-    <div class="popover-heading">
-      <span v-if="icon" class="popover-icon">
+  <div class="popover-card" @mouseenter="popoverOpen" @mouseleave="popoverClose">
+    <div class="popover-card__heading">
+      <span v-if="icon" class="popover-card__icon">
         <component :is="icon" />
       </span>
       {{ heading }}
     </div>
-    <div v-if="isOpen && contentItems.length" class="popover-content">
-      <div class="popover-arrow" :class="arrowPosition" />
-      <ul class="popover-list">
+    <div v-if="isOpen && contentItems.length" class="popover-card__content">
+      <div :class="arrowPosition" />
+      <ul class="popover-card__list">
         <li v-for="(item, index) in contentItems" :key="index" @click="handleItemClick(item)">
           {{ item }}
         </li>
@@ -37,13 +37,13 @@ const isOpen = ref<boolean>(false)
 const arrowPosition = computed(() => {
   switch (props.position) {
     case 'top':
-      return 'arrow-bottom'
+      return 'popover-card__arrow arrow-bottom'
     case 'left':
-      return 'arrow-right'
+      return 'popover-card__arrow arrow-right'
     case 'right':
-      return 'arrow-left'
+      return 'popover-card__ arrow arrow-left'
     case 'bottom':
-      return 'arrow-top'
+      return 'popover-card__arrow arrow-top'
     default:
       return ''
   }
@@ -59,11 +59,11 @@ function handleItemClick(item: string) {
 </script>
 
 <style scoped lang="scss">
-.popover-wrapper {
+.popover-card {
   position: relative;
   display: inline-block;
 
-  .popover-heading {
+  &__heading {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -86,14 +86,14 @@ function handleItemClick(item: string) {
       background-color: #0056b3;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     }
-
-    .popover-icon {
-      display: inline-flex;
-      align-items: center;
-    }
   }
 
-  .popover-content {
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__content {
     position: absolute;
     background: white;
     border: 1px solid #ccc;
@@ -102,61 +102,61 @@ function handleItemClick(item: string) {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     min-width: 160px;
     z-index: 10;
+  }
 
-    .popover-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-      li {
-        padding: 6px 10px;
-        font-size: 14px;
-        cursor: pointer;
-        border-radius: 4px;
+    li {
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
 
-        &:hover {
-          background: #f0f0f0;
-        }
+      &:hover {
+        background: #f0f0f0;
       }
     }
+  }
 
-    .popover-arrow {
-      position: absolute;
-      height: auto;
+  &__arrow {
+    position: absolute;
+    height: auto;
 
-      &.arrow-top,
-      &.arrow-bottom {
-        left: 20px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-      }
+    &.arrow-top,
+    &.arrow-bottom {
+      left: 20px;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
 
-      &.arrow-left,
-      &.arrow-right {
-        top: 12px;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-      }
+    &.arrow-left,
+    &.arrow-right {
+      top: 12px;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+    }
 
-      &.arrow-top {
-        bottom: -8px;
-        border-top: 8px solid white;
-      }
+    &.arrow-top {
+      bottom: -8px;
+      border-top: 8px solid white;
+    }
 
-      &.arrow-bottom {
-        top: -8px;
-        border-bottom: 8px solid white;
-      }
+    &.arrow-bottom {
+      top: -8px;
+      border-bottom: 8px solid white;
+    }
 
-      &.arrow-left {
-        right: -8px;
-        border-left: 8px solid white;
-      }
+    &.arrow-left {
+      right: -8px;
+      border-left: 8px solid white;
+    }
 
-      &.arrow-right {
-        left: -8px;
-        border-right: 8px solid white;
-      }
+    &.arrow-right {
+      left: -8px;
+      border-right: 8px solid white;
     }
   }
 }
