@@ -1,7 +1,7 @@
 <template>
   <button
-    :style="{ backgroundColor, color: textColor, padding }"
     class="custom-button"
+    :style="{ backgroundColor, color: textColor, padding }"
     @click="handleClick"
   >
     {{ text }}
