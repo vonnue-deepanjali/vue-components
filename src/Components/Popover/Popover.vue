@@ -2,7 +2,6 @@
   <div class="popover-card" @mouseenter="popoverOpen" @mouseleave="popoverClose">
     <div class="popover-card__heading">
       <v-icon v-if="icon" class="popover-icon" :icon="icon" />
-
       {{ heading }}
     </div>
     <div v-if="isOpen && contentItems.length" class="popover-card__content">
@@ -160,3 +159,5 @@ function handleItemClick(item: PopoverItem) {
   }
 }
 </style>
+
+gjgjgjgj
