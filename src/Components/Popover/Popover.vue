@@ -1,18 +1,15 @@
 <template>
   <div class="popover-card" @mouseenter="popoverOpen" @mouseleave="popoverClose">
     <div class="popover-card__heading">
-      <span v-if="icon" class="popover-card__icon">
-        <component :is="icon" />
-      </span>
+      <v-icon v-if="icon" class="popover-icon" :icon="icon" />
+
       {{ heading }}
     </div>
     <div v-if="isOpen && contentItems.length" class="popover-card__content">
       <div :class="arrowPosition" />
-      <ul class="popover-card__list">
-        <li v-for="(item, index) in contentItems" :key="index" @click="handleItemClick(item)">
-          {{ item }}
-        </li>
-      </ul>
+      <li v-for="item in contentItems" :key="item.id" @click="handleItemClick(item)">
+        {{ item.label }}
+      </li>
     </div>
   </div>
 </template>
@@ -20,16 +17,19 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import type { popoverProps } from '@/type/Popover'
+import type { PopoverItem, popoverProps } from '@/type/Popover'
 
 const props = withDefaults(defineProps<popoverProps>(), {
   position: 'top',
   heading: 'Popover me',
-  contentItems: () => ['Option 1', 'Option 2'],
+  contentItems: () => [
+    { id: '1', label: 'Option 1' },
+    { id: '2', label: 'Option 2' },
+  ],
 })
 
 const emit = defineEmits<{
-  (e: 'item-click', item: string): void
+  (e: 'item-click', item: PopoverItem): void
 }>()
 
 const isOpen = ref<boolean>(false)
@@ -52,9 +52,8 @@ const arrowPosition = computed(() => {
 const popoverOpen = () => (isOpen.value = true)
 const popoverClose = () => (isOpen.value = false)
 
-function handleItemClick(item: string) {
+function handleItemClick(item: PopoverItem) {
   emit('item-click', item)
-  isOpen.value = false
 }
 </script>
 
