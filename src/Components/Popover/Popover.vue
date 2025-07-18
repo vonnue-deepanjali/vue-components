@@ -1,27 +1,46 @@
 <template>
   <div class="popover-wrapper" @mouseenter="open" @mouseleave="close">
     <div class="popover-heading">
-      <slot name="heading">Popover me</slot>
+      <span v-if="icon" class="popover-icon">
+        <component :is="icon" />
+      </span>
+      {{ heading }}
     </div>
     <div v-if="isOpen" class="popover-content">
-      <div class="popover-arrow" :class="arrowPosition"></div>
-      <slot name="content">Popover content</slot>
+      <div class="popover-arrow" :class="arrowPosition" />
+      <ul class="popover-list">
+        <li v-for="(item, index) in contentItems" :key="index" @click="handleItemClick(item)">
+          {{ item }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 
-const isOpen = ref(false)
+interface Props {
+  position?: 'top' | 'right' | 'bottom' | 'left'
+  heading?: string
+  icon?: string | object
+  contentItems?: string[]
+}
 
-const props = defineProps({
-  position: {
-    type: String,
-    default: 'top',
-    validator: (val: string) => ['top', 'right', 'bottom', 'left'].includes(val),
-  },
+const props = withDefaults(defineProps<Props>(), {
+  position: 'top',
+  heading: 'Popover me',
+  contentItems: () => ['Option 1', 'Option 2'],
 })
+
+const emit = defineEmits<{
+  (e: 'item-click', item: string): void
+}>()
+
+const isOpen = ref<boolean>(false)
+
+const open = () => (isOpen.value = true)
+const close = () => (isOpen.value = false)
 
 const arrowPosition = computed(() => {
   switch (props.position) {
@@ -32,76 +51,118 @@ const arrowPosition = computed(() => {
     case 'right':
       return 'arrow-left'
     case 'bottom':
-    default:
       return 'arrow-top'
+    default:
+      return ''
   }
 })
 
-function open() {
-  isOpen.value = true
-}
-
-function close() {
+function handleItemClick(item: string) {
+  emit('item-click', item)
   isOpen.value = false
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .popover-wrapper {
   position: relative;
   display: inline-block;
-}
 
-.popover-heading {
-  cursor: pointer;
-}
+  .popover-heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
 
-.popover-content {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 12px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  min-width: 160px;
-  z-index: 10;
-}
+    padding: 8px 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition:
+      background-color 0.2s,
+      box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-.popover-arrow {
-  position: absolute;
-  height: auto;
-}
+    &:hover {
+      background-color: #0056b3;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
 
-.arrow-top,
-.arrow-bottom {
-  left: 20px;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-}
-.arrow-left,
-.arrow-right {
-  top: 12px;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-}
+    .popover-icon {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
 
-.arrow-top {
-  bottom: -8px;
-  border-top: 8px solid white;
-}
+  .popover-content {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    z-index: 10;
 
-.arrow-bottom {
-  top: -8px;
-  border-bottom: 8px solid white;
-}
+    .popover-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
-.arrow-left {
-  right: -8px;
-  border-left: 8px solid white;
-}
+      li {
+        padding: 6px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
 
-.arrow-right {
-  left: -8px;
-  border-right: 8px solid white;
+        &:hover {
+          background: #f0f0f0;
+        }
+      }
+    }
+
+    .popover-arrow {
+      position: absolute;
+      height: auto;
+
+      &.arrow-top,
+      &.arrow-bottom {
+        left: 20px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+      }
+
+      &.arrow-left,
+      &.arrow-right {
+        top: 12px;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+
+      &.arrow-top {
+        bottom: -8px;
+        border-top: 8px solid white;
+      }
+
+      &.arrow-bottom {
+        top: -8px;
+        border-bottom: 8px solid white;
+      }
+
+      &.arrow-left {
+        right: -8px;
+        border-left: 8px solid white;
+      }
+
+      &.arrow-right {
+        left: -8px;
+        border-right: 8px solid white;
+      }
+    }
+  }
 }
 </style>
