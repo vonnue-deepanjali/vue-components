@@ -1,5 +1,5 @@
 <template>
-  <div class="popover-card" @mouseenter="popoverOpen" @mouseleave="popoverClose">
+  <div class="popover-card" @mouseenter="handlePopoverOpen" @mouseleave="handlePopoverClose">
     <div class="popover-card__heading">
       <v-icon v-if="icon" class="popover-icon" :icon="icon" />
       {{ heading }}
@@ -48,8 +48,8 @@ const arrowPosition = computed(() => {
   }
 })
 
-const popoverOpen = () => (isOpen.value = true)
-const popoverClose = () => (isOpen.value = false)
+const handlePopoverOpen = () => (isOpen.value = true)
+const handlePopoverClose = () => (isOpen.value = false)
 
 function handleItemClick(item: PopoverItem) {
   emit('item-click', item)
@@ -159,5 +159,3 @@ function handleItemClick(item: PopoverItem) {
   }
 }
 </style>
-
-gjgjgjgj
