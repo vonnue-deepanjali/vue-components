@@ -4,12 +4,15 @@
     :style="{ backgroundColor, color: textColor, padding }"
     @click="handleClick"
   >
-    {{ text }}
+    <Text :color="textColor" :size="textSize" :weight="textWeight" :uppercase="uppercase">
+      {{ text }}
+    </Text>
   </button>
 </template>
 
 <script setup lang="ts">
 import type { buttonProps } from '@/type/Button'
+import Text from '../components/Text.vue'
 
 const props = withDefaults(defineProps<buttonProps>(), {
   text: 'Click Me',
