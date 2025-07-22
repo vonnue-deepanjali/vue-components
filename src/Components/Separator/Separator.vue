@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SeparatorProps } from '@/type/Separator'
+import type { SeparatorProps } from '@/Types/Type'
 
 const props = withDefaults(defineProps<SeparatorProps>(), {
   thickness: 1,
