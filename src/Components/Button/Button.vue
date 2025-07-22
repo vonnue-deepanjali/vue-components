@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import type { buttonProps } from '@/type/Button'
-import Text from '../components/Text.vue'
+import Text from '../Text/Text.vue'
 
 const props = withDefaults(defineProps<buttonProps>(), {
   text: 'Click Me',
