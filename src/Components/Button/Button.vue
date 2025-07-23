@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type { buttonProps } from '@/type/Button'
+import type { buttonProps } from '@/type/type'
 import Text from '../Text/Text.vue'
 
 const props = withDefaults(defineProps<buttonProps>(), {

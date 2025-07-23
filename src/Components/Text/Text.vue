@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { TextProps } from '@/type/Text'
+import type { TextProps } from '@/type/type'
 
 const props = withDefaults(defineProps<TextProps>(), {
   color: '#000000',
