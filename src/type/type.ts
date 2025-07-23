@@ -23,19 +23,6 @@ export interface SeparatorProps {
   color?: string
   vertical?: boolean
 }
-
-export interface PopoverItem {
-  id: string
-  label: string
-}
-
-export interface popoverProps {
-  position?: 'top' | 'right' | 'bottom' | 'left'
-  heading?: string
-  icon?: string | object
-  contentItems?: PopoverItem[]
-}
-
 export interface SidebarProps {
   height?: string | number
   width?: string | number
