@@ -35,3 +35,9 @@ export interface popoverProps {
   icon?: string | object
   contentItems?: PopoverItem[]
 }
+
+export interface SidebarProps {
+  height?: string | number
+  width?: string | number
+  overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible'
+}
