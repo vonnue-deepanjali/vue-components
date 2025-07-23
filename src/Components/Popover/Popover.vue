@@ -1,7 +1,7 @@
 <template>
   <div class="popover-card" @mouseenter="handlePopoverOpen" @mouseleave="handlePopoverClose">
     <div class="popover-card__heading">
-      <v-icon v-if="icon" class="popover-icon" :icon="icon" />
+      <Icon v-if="icon" :name="arrow" class="popover-icon" />
       {{ heading }}
     </div>
     <div v-if="isOpen && contentItems.length" class="popover-card__content">
@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
+import Icon from '../components/Icon.vue'
 import type { PopoverItem, popoverProps } from '@/type/Popover'
 
 const props = withDefaults(defineProps<popoverProps>(), {
