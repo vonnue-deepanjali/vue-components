@@ -7,8 +7,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { IconProps } from '@/type/type'
+
 import iconMap from '@/Components/Icon/IconMap'
+import type { IconProps } from '@/type/type'
 
 const props = withDefaults(defineProps<IconProps>(), {
   color: 'white',

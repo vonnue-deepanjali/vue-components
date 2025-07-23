@@ -1,5 +1,6 @@
 import type { IconName } from '@/Components/Icon/IconMap'
-export interface buttonProps {
+
+export interface ButtonProps {
   text?: string
   backgroundColor?: string
   textColor?: string
