@@ -1,3 +1,4 @@
+import type { IconName } from '@/Components/Icon/IconMap'
 export interface buttonProps {
   text?: string
   backgroundColor?: string
@@ -22,4 +23,9 @@ export interface SeparatorProps {
   length?: number | string
   color?: string
   vertical?: boolean
+}
+
+export interface IconProps {
+  name: IconName
+  color?: string
 }
