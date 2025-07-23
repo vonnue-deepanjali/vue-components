@@ -17,7 +17,7 @@
 import { computed, ref } from 'vue'
 
 import Icon from '../components/Icon.vue'
-import type { PopoverItem, popoverProps } from '@/type/Popover'
+import type { PopoverItem, popoverProps } from '@/type/type'
 
 const props = withDefaults(defineProps<popoverProps>(), {
   position: 'top',
