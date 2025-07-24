@@ -2,7 +2,7 @@
   <div class="dropdown-card" @mouseenter="handleDropDownOpen" @mouseleave="handleDropDownClose">
     <div class="dropdown-card__header" :class="{ hovered: isHovered }">
       <Text :color="currentColor" size="18px" weight="bold">
-        {{ props.title }}
+        {{ title }}
       </Text>
       <Icon
         name="arrow"
@@ -21,7 +21,7 @@
           v-for="item in items"
           :key="item.id"
           size="14px"
-          :color="props.color"
+          :color="color"
           class="dropdown-card__list-item"
           @click="handleItemClick(item)"
         >
