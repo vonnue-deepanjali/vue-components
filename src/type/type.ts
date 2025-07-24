@@ -28,3 +28,15 @@ export interface SidebarProps {
   width?: string | number
   overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible'
 }
+
+export interface DropDownItem {
+  id: string
+  label: string
+}
+
+export interface DropDownSelectionProps {
+  title?: string
+  items?: DropDownItem[][]
+  color?: string
+  hoverColor?: string
+}
