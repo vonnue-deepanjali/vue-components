@@ -1,33 +1,29 @@
 <template>
   <div class="dropdown-card" @mouseenter="handleDropDownOpen" @mouseleave="handleDropDownClose">
     <div class="dropdown-card__header" :class="{ hovered: isHovered }">
-      <Text :color="isHovered ? hoverColor : color" size="18px" weight="bold">
-        {{ title }}
+      <Text :color="currentColor" size="18px" weight="bold">
+        {{ props.title }}
       </Text>
       <Icon
         name="arrow"
-        :color="isHovered ? hoverColor : color"
+        :color="currentColor"
         :style="{ transform: isHovered ? 'rotate(90deg)' : 'rotate(270deg)' }"
       />
     </div>
     <div
-      class="dropdown-card__list"
       v-if="isHovered"
+      class="dropdown-card__list"
       @mouseenter="handleDropDownOpen"
       @mouseleave="handleDropDownClose"
     >
-      <div
-        class="dropdown-card__list-column"
-        v-for="(column, colIndex) in items"
-        :key="column[0]?.id || colIndex"
-      >
+      <div v-for="(items, index) in items" class="dropdown-card__list-column" :key="index">
         <Text
-          v-for="item in column"
+          v-for="item in items"
           :key="item.id"
           size="14px"
-          :color="color"
+          :color="props.color"
           class="dropdown-card__list-item"
-          @click="handleClick(item.label)"
+          @click="handleItemClick(item)"
         >
           {{ item.label }}
         </Text>
@@ -37,9 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
-import type { DropDownSelectionProps, DropDownItem } from '@/type/type'
+import type { DropDownItem, DropDownSelectionProps } from '@/type/type'
 
 import Icon from '@/components/Icon.vue'
 import Text from '@/components/Text.vue'
@@ -47,7 +43,20 @@ import Text from '@/components/Text.vue'
 const props = withDefaults(defineProps<DropDownSelectionProps>(), {
   color: '#000000',
   hoverColor: '#007BFF',
+  title: 'Title',
+  items: [
+    [
+      { id: 'wd', label: 'Web Design' },
+      { id: 'ad', label: 'App Development' },
+      { id: 'seo', label: 'SEO' },
+      { id: 'marketing', label: 'Marketing' },
+    ],
+  ],
 })
+
+const emit = defineEmits<{
+  (event: 'item-click', item: DropDownItem): void
+}>()
 
 const isHovered = ref<boolean>(false)
 
@@ -64,9 +73,11 @@ const handleDropDownClose = () => {
   }, 200)
 }
 
-const handleClick = (label: string) => {
-  console.log('Clicked:', label)
+const handleItemClick = (item: DropDownItem) => {
+  emit('item-click', item)
 }
+
+const currentColor = computed(() => (isHovered.value ? props.hoverColor : props.color))
 </script>
 
 <style scoped lang="scss">
