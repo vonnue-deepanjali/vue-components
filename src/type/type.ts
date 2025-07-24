@@ -23,11 +23,6 @@ export interface SeparatorProps {
   color?: string
   vertical?: boolean
 }
-export interface SidebarProps {
-  height?: string | number
-  width?: string | number
-  overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible'
-}
 
 export interface DropDownItem {
   id: string
