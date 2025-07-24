@@ -2,9 +2,9 @@
   <div
     class="sidebar"
     :style="{
-      maxHeight: height,
-      width: width,
-      overflowY: overflowY,
+      height: typeof props.height === 'number' ? `${props.height}px` : props.height,
+      width: typeof props.width === 'number' ? `${props.width}px` : props.width,
+      overflowY: props.overflowY,
     }"
   >
     <slot />
