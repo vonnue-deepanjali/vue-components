@@ -23,3 +23,15 @@ export interface SeparatorProps {
   color?: string
   vertical?: boolean
 }
+
+export interface DropDownItem {
+  id: string
+  label: string
+}
+
+export interface DropDownSelectionProps {
+  title?: string
+  items?: DropDownItem[][]
+  color?: string
+  hoverColor?: string
+}
