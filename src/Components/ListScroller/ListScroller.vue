@@ -1,17 +1,12 @@
 <template>
-  <div
-    class="sidebar"
-    :style="{
-      height: typeof props.height === 'number' ? `${props.height}px` : props.height,
-      width: typeof props.width === 'number' ? `${props.width}px` : props.width,
-      overflowY: props.overflowY,
-    }"
-  >
+  <div class="sidebar" :style="sidebarStyle">
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import type { SidebarProps } from '@/type/type'
 
 const props = withDefaults(defineProps<SidebarProps>(), {
@@ -19,6 +14,12 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   width: '300px',
   overflowY: 'auto',
 })
+
+const sidebarStyle = computed(() => ({
+  height: typeof props.height === 'number' ? `${props.height}px` : props.height,
+  width: typeof props.width === 'number' ? `${props.width}px` : props.width,
+  overflowY: props.overflowY,
+}))
 </script>
 
 <style scoped>

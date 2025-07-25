@@ -1,4 +1,4 @@
-export interface buttonProps {
+export interface ButtonProps {
   text?: string
   backgroundColor?: string
   textColor?: string
@@ -23,6 +23,7 @@ export interface SeparatorProps {
   color?: string
   vertical?: boolean
 }
+
 export interface SidebarProps {
   height?: string | number
   width?: string | number
