@@ -16,9 +16,9 @@
       @mouseenter="handleDropDownOpen"
       @mouseleave="handleDropDownClose"
     >
-      <div v-for="(items, index) in items" class="dropdown-card__list-column" :key="index">
+      <div v-for="(columnItems, index) in items" class="dropdown-card__list-column" :key="index">
         <Text
-          v-for="item in items"
+          v-for="item in columnItems"
           :key="item.id"
           size="14px"
           :color="color"
@@ -40,11 +40,11 @@ import type { DropDownItem, DropDownSelectionProps } from '@/type/type'
 import Icon from '@/components/Icon.vue'
 import Text from '@/components/Text.vue'
 
-const props = withDefaults(defineProps<DropDownSelectionProps>(), {
-  color: '#000000',
-  hoverColor: '#007BFF',
-  title: 'Title',
-  items: [
+const {
+  color = '#000000',
+  hoverColor = '#007BFF',
+  title = 'Title',
+  items = [
     [
       { id: 'wd', label: 'Web Design' },
       { id: 'ad', label: 'App Development' },
@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<DropDownSelectionProps>(), {
       { id: 'marketing', label: 'Marketing' },
     ],
   ],
-})
+} = defineProps<DropDownSelectionProps>()
 
 const emit = defineEmits<{
   (event: 'item-click', item: DropDownItem): void
@@ -76,8 +76,7 @@ const handleDropDownClose = () => {
 const handleItemClick = (item: DropDownItem) => {
   emit('item-click', item)
 }
-
-const currentColor = computed(() => (isHovered.value ? props.hoverColor : props.color))
+const currentColor = computed(() => (isHovered.value ? hoverColor : color))
 </script>
 
 <style scoped lang="scss">
