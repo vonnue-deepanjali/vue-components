@@ -11,10 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import type { buttonProps } from '@/type/type'
+import type { ButtonProps } from '@/type/type'
 import Text from '../Text/Text.vue'
 
-const props = withDefaults(defineProps<buttonProps>(), {
+const props = withDefaults(defineProps<ButtonProps>(), {
   text: 'Click Me',
   backgroundColor: '#faf9f6',
   textColor: '#000000',

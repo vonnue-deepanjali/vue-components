@@ -1,4 +1,6 @@
-export interface buttonProps {
+import type { IconName } from '@/Components/Icon/IconMap'
+
+export interface ButtonProps {
   text?: string
   backgroundColor?: string
   textColor?: string
@@ -22,4 +24,9 @@ export interface SeparatorProps {
   length?: number | string
   color?: string
   vertical?: boolean
+}
+
+export interface IconProps {
+  name: IconName
+  color?: string
 }
