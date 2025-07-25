@@ -9,16 +9,16 @@ import { computed } from 'vue'
 
 import type { ListScrollerProps } from '@/type/type'
 
-const props = withDefaults(defineProps<ListScrollerProps>(), {
+const { height, width, overflowY } = withDefaults(defineProps<ListScrollerProps>(), {
   height: '400px',
   width: '300px',
   overflowY: 'auto',
 })
 
 const ListScrollerStyle = computed(() => ({
-  height: typeof props.height === 'number' ? `${props.height}px` : props.height,
-  width: typeof props.width === 'number' ? `${props.width}px` : props.width,
-  overflowY: props.overflowY,
+  height: typeof height === 'number' ? `${height}px` : height,
+  width: typeof width === 'number' ? `${width}px` : width,
+  overflowY,
 }))
 </script>
 
