@@ -24,7 +24,7 @@ export interface SeparatorProps {
   vertical?: boolean
 }
 
-export interface SidebarProps {
+export interface ListScrollerProps {
   height?: string | number
   width?: string | number
   overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible'
