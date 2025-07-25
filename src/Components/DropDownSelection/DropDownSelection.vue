@@ -40,11 +40,11 @@ import type { DropDownItem, DropDownSelectionProps } from '@/type/type'
 import Icon from '@/components/Icon.vue'
 import Text from '@/components/Text.vue'
 
-const {
-  color = '#000000',
-  hoverColor = '#007BFF',
-  title = 'Title',
-  items = [
+const props = withDefaults(defineProps<DropDownSelectionProps>(), {
+  color: '#000000',
+  hoverColor: '#007BFF',
+  title: 'Title',
+  items: [
     [
       { id: 'wd', label: 'Web Design' },
       { id: 'ad', label: 'App Development' },
@@ -52,7 +52,7 @@ const {
       { id: 'marketing', label: 'Marketing' },
     ],
   ],
-} = defineProps<DropDownSelectionProps>()
+})
 
 const emit = defineEmits<{
   (event: 'item-click', item: DropDownItem): void
@@ -76,7 +76,8 @@ const handleDropDownClose = () => {
 const handleItemClick = (item: DropDownItem) => {
   emit('item-click', item)
 }
-const currentColor = computed(() => (isHovered.value ? hoverColor : color))
+
+const currentColor = computed(() => (isHovered.value ? props.hoverColor : props.color))
 </script>
 
 <style scoped lang="scss">
