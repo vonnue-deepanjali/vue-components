@@ -1,7 +1,6 @@
 <template>
   <v-icon class="custom-icon" :color="props.color">
-    <component :is="iconComponent" v-if="iconComponent" />
-    <span v-else>Icon not found</span>
+    <component v-if="iconComponent" :is="iconComponent" />
   </v-icon>
 </template>
 
