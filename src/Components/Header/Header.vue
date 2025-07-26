@@ -1,5 +1,5 @@
 <template>
-  <div :style="headerStyle" class="list-header">
+  <div :style="headerStyle" class="listHeader">
     <Text :size="size" :weight="weight" :uppercase="uppercase" :color="color" :align="align">
       <slot />
     </Text>
@@ -31,7 +31,7 @@ const headerStyle = computed(() => ({
 </script>
 
 <style scoped>
-.list-header {
+.listHeader {
   margin-bottom: 16px;
 }
 </style>
