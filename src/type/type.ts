@@ -24,14 +24,14 @@ export interface SeparatorProps {
   vertical?: boolean
 }
 
-export interface PopoverItem {
+export interface DropDownItem {
   id: string
   label: string
 }
 
-export interface popoverProps {
-  position?: 'top' | 'right' | 'bottom' | 'left'
-  heading?: string
-  icon?: string | object
-  contentItems?: PopoverItem[]
+export interface DropDownSelectionProps {
+  title?: string
+  items?: DropDownItem[][]
+  color?: string
+  hoverColor?: string
 }
