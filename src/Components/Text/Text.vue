@@ -5,15 +5,17 @@
     }"
     :style="computedStyle"
   >
-    <slot />
+    {{ text }}
   </span>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+
 import type { TextProps } from '@/type/type'
 
 const props = withDefaults(defineProps<TextProps>(), {
+  text: 'Text Content',
   color: '#000000',
   size: '16px',
   weight: 'normal',
