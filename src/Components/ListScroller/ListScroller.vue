@@ -1,12 +1,19 @@
 <template>
   <div class="listScroller" :style="listScrollerStyle">
-    <ListHeader size="18" weight="700" uppercase color="black" align="left"> Section 1 </ListHeader>
+    <ListHeader
+      title="Section 1"
+      size="18"
+      weight="700"
+      uppercase
+      color="black"
+      align="left"
+    ></ListHeader>
     <div v-for="item in section1Items" :key="item.id">
-      <Text color="#212121" size="14px">{{ item.text }}</Text>
+      <Text :text="item.text" color="#212121" size="14px">{{ item.text }}</Text>
     </div>
-    <ListHeader>Section 2</ListHeader>
+    <ListHeader title="SEction 2"></ListHeader>
     <div v-for="item in section2Items" :key="item.id">
-      <Text color="#212121" size="14px">{{ item.text }}</Text>
+      <Text :text="item.text" color="#212121" size="14px">{{ item.text }}</Text>
     </div>
   </div>
 </template>

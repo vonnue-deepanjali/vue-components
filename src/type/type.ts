@@ -9,6 +9,7 @@ export interface ButtonProps {
 }
 
 export interface TextProps {
+  text: string
   color?: string
   size?: string | number
   weight?: string | number
@@ -32,6 +33,7 @@ export interface ListScrollerProps {
 }
 
 export interface HeaderProps {
+  title: string
   size?: string | number
   weight?: string | number
   color?: string
